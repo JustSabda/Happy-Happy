@@ -23,7 +23,8 @@ public class Capturing : MonoBehaviour
     [Header("Cappy Floating Animation")]
     public float speed = 2F;
     public float height = 1F;
-    
+
+    [HideInInspector] public bool isNPC = false;
     
    
     Vector3 direction;
@@ -62,14 +63,30 @@ public class Capturing : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(newClone, Cappy.transform.position, transform.rotation);
+            Instantiate(newClone, Cappy.transform.position + new Vector3(1,0,0), transform.rotation);
 
-
-            gameObject.SetActive(false);
-            if(gameObject.tag != "Player")
+            if (!isNPC)
             {
-                Cappy.SetActive(false);
+                
+                gameObject.SetActive(false);
+                transform.DOKill();
+
             }
+            else
+            {
+
+                Cappy.SetActive(false);
+                GetComponent<PlayerMovement>().enabled = false;
+                GetComponent<CollisionEnemy>().enabled = true;
+                GetComponent<CollisionEnemy>().Captured = false;
+                
+                Return = true;
+                this.enabled = false;
+                gameObject.tag = "Untagged";
+                transform.DOKill();
+
+            }
+           
         }
         // Return Animation of Cappy
         if (Return)
