@@ -39,10 +39,15 @@ public class Capturing : MonoBehaviour
         Return = true;
         Cappy.transform.position = CappySpace.transform.position;
 
+        
+    }
+
+    private void Start()
+    {
         AnimationManager.Instance.Cam.Follow = gameObject.transform;
 
     }
-    
+
     private void Update()
     {
 

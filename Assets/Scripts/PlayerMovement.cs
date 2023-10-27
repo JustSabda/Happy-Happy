@@ -9,15 +9,28 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public float rotationSpeed;
-    public float jumpSpeed;
+    public float jumpHeight;
+    public float swimHeight;
+    public float gravityMultiplier;
+
     public float jumpButtonGracePeriod;
 
-
+    private Animator anim;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
     private float? lastGroundTime;
     private float? jumpButtonPressedTime;
+    private bool isJumping;
+    private bool isGrounded;
+    private bool isGliding;
+    public bool isSwiming;
+
+    public float glidingMultiplier;
+    public float sinkMultiplier;
+
+    float mass = 3.0f;
+    Vector3 push = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +45,25 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+
+
+        if(push.magnitude > 0.2f)
+        {
+            characterController.Move(push * Time.deltaTime);
+        }
+        push = Vector3.Lerp(push, Vector3.zero, 5 * Time.deltaTime);
+
+
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
         movementDirection.Normalize();
 
-        ySpeed += Physics.gravity.y * Time.deltaTime;
+        float gravity = Physics.gravity.y * gravityMultiplier;
+
+        ySpeed += gravity * Time.deltaTime;
+
+
+        //ySpeed = glidingMultiplier;
 
         if (characterController.isGrounded)
         {
@@ -52,9 +79,14 @@ public class PlayerMovement : MonoBehaviour
         {
             characterController.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
+            isGrounded = true;
+            isJumping = false;
+            isGliding = false;
             if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
             {
-                ySpeed = jumpSpeed;
+                //ySpeed = jumpHeight;
+                ySpeed = Mathf.Sqrt(jumpHeight * -3 * gravity);
+                isJumping = true;
                 jumpButtonPressedTime = null;
                 lastGroundTime = null;
             }
@@ -62,11 +94,38 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             characterController.stepOffset = 0;
+            isGrounded = false;
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                isGliding =! isGliding;
+            }
+
+
         }
+
+        if (isSwiming)
+        {
+            if (Input.GetButtonDown("Jump"))
+            {
+                //ySpeed = Mathf.Sqrt(swimHeight * 3);
+
+                Vector3 dir = new Vector3(0,1,0);
+                dir.Normalize();
+
+                push += dir.normalized * swimHeight / mass;
+            }
+            else
+            ySpeed = gravity * sinkMultiplier;
+
+        }
+
+        if (isGliding)
+            ySpeed = gravity * glidingMultiplier;
         //transform.Translate(movementDirection * speed * Time.deltaTime);
 
         Vector3 velocity = movementDirection * magnitude;
         velocity.y = ySpeed;
+        //velocity.y = glidingMultiplier;
 
         characterController.Move(velocity * Time.deltaTime);
 
