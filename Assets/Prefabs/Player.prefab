@@ -152,8 +152,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rotationSpeed: 720
-  jumpSpeed: 5
+  jumpHeight: 1
+  swimHeight: 100
+  gravityMultiplier: 4
   jumpButtonGracePeriod: 0.2
+  isSwiming: 0
+  glidingMultiplier: 0.1
+  sinkMultiplier: 0.3
 --- !u!136 &1506384555370949620
 CapsuleCollider:
   m_ObjectHideFlags: 0
