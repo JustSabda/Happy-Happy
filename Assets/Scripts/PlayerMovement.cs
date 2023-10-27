@@ -142,5 +142,21 @@ public class PlayerMovement : MonoBehaviour
             Quaternion toRotate = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, rotationSpeed * Time.deltaTime);
         }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "FallDetector")
+        {
+            Debug.Log("wow");
+            characterController.enabled = false;
+            characterController.transform.position = GameManager.Instance.respawnPoint;
+            characterController.enabled = true;
+        }
+        
+
+        if(other.tag == "Checkpoint")
+        GameManager.Instance.respawnPoint = other.transform.position;
     }
 }

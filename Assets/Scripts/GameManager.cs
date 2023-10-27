@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
     Renderer EyeRenderer;
     int Playamount = 1;
 
+    public Vector3 respawnPoint;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -67,9 +69,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        respawnPoint = Player.transform.position;
         //EnemyCappySpace = EnemyCapturing.CappySpace.position;
         //EyeRenderer = EnemyEyes.GetComponent<Renderer>();
-      
+
     }
     
     public void ChangeCamera()
