@@ -38,14 +38,14 @@ public class Capturing : MonoBehaviour
         DOTween.KillAll(true);
         Return = true;
         Cappy.transform.position = CappySpace.transform.position;
-       
-        
-        
+
+        AnimationManager.Instance.Cam.Follow = gameObject.transform;
+
     }
     
     private void Update()
     {
-     
+
         
 
 
@@ -53,11 +53,24 @@ public class Capturing : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && Return == false)
         {
             CapThrow();
-            Instantiate(newClone, Cappy.transform.position, Cappy.transform.rotation);
+            
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Instantiate(newClone, Cappy.transform.position, transform.rotation);
+
+
+            gameObject.SetActive(false);
+            if(gameObject.tag != "Player")
+            {
+                Cappy.SetActive(false);
+            }
         }
         // Return Animation of Cappy
-        if(Return)
+        if (Return)
         {
+            
+
             direction = (CappySpace.position - Cappy.transform.position).normalized;
             
             Controller.Move(direction * ReturnSpeed * Time.deltaTime);
@@ -141,6 +154,7 @@ public class Capturing : MonoBehaviour
        
         GetComponent<PlayerMovement>().enabled = false;
         this.enabled = false;
+        gameObject.SetActive(false);
         transform.DOKill();
     }
 

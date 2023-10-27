@@ -42,7 +42,7 @@ public class CollisionEnemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.gameObject.ToString());
-        if(other.gameObject.CompareTag("Player") && Captured == false)
+        if(other.gameObject.CompareTag("Cap") && Captured == false)
         {
             Capture();
         }
@@ -52,7 +52,7 @@ public class CollisionEnemy : MonoBehaviour
         Captured = true;
         input.enabled = true;
         GetComponent<Capturing>().enabled = true;
-        GameObject Player = GameObject.Find("Player");
+        GameObject Player = GameObject.FindWithTag("Player");
         Player.GetComponent<Capturing>().Capture();
         //Trigger Convert Animation in ManagerScript
         GameObject Manager = GameObject.Find("Manager");

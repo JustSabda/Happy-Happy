@@ -11,7 +11,8 @@ using static Unity.Burst.Intrinsics.X86;
 
 public class AnimationManager : MonoBehaviour
 {
-     
+    public static AnimationManager Instance { get; private set; }
+
     public GameObject Player;
     [Header("Capture Animation / Dissolve")]
     //public Material DissolveMat;
@@ -49,8 +50,21 @@ public class AnimationManager : MonoBehaviour
     public Material NewMaterial;
     Renderer EyeRenderer;
     int Playamount = 1;
-    
-   
+
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     private void Start()
     {
         EnemyCappySpace = EnemyCapturing.CappySpace.position;
@@ -58,6 +72,11 @@ public class AnimationManager : MonoBehaviour
       
     }
     
+    public void ChangeCamera()
+    {
+        GameObject Player = GameObject.FindWithTag("Player");
+        Cam.Follow = Player.transform;
+    }
 
     public void CaptureAnimation()
     {
