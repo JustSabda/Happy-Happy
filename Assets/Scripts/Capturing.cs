@@ -39,22 +39,19 @@ public class Capturing : MonoBehaviour
         DOTween.KillAll(true);
         Return = true;
         Cappy.transform.position = CappySpace.transform.position;
-
+        
         
     }
 
     private void Start()
     {
-        AnimationManager.Instance.Cam.Follow = gameObject.transform;
-
+        GameManager.Instance.Cam.Follow = gameObject.transform;
+        Cappy = GameObject.FindWithTag("Cap");
+        Controller = Cappy.GetComponent<CharacterController>();
     }
 
     private void Update()
     {
-
-        
-
-
 
         if (Input.GetKeyDown(KeyCode.E) && Return == false)
         {
@@ -91,7 +88,6 @@ public class Capturing : MonoBehaviour
         // Return Animation of Cappy
         if (Return)
         {
-            
 
             direction = (CappySpace.position - Cappy.transform.position).normalized;
             

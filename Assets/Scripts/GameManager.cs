@@ -9,9 +9,9 @@ using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using static Unity.Burst.Intrinsics.X86;
 
-public class AnimationManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static AnimationManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
 
     public GameObject Player;
     [Header("Capture Animation / Dissolve")]
@@ -67,7 +67,7 @@ public class AnimationManager : MonoBehaviour
 
     private void Start()
     {
-        EnemyCappySpace = EnemyCapturing.CappySpace.position;
+        //EnemyCappySpace = EnemyCapturing.CappySpace.position;
         //EyeRenderer = EnemyEyes.GetComponent<Renderer>();
       
     }

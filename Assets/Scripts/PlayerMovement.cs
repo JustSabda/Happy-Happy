@@ -8,6 +8,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed;
+    public float runSpeed;
     public float rotationSpeed;
     public float jumpHeight;
     public float swimHeight;
@@ -56,6 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         float magnitude = Mathf.Clamp01(movementDirection.magnitude) * speed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            magnitude *= runSpeed;
+        }
+
         movementDirection.Normalize();
 
         float gravity = Physics.gravity.y * gravityMultiplier;

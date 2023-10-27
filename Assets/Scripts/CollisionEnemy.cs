@@ -72,8 +72,8 @@ public class CollisionEnemy : MonoBehaviour
         gameObject.tag = "Player";
 
         //Trigger Convert Animation in ManagerScript
-        GameObject Manager = GameObject.Find("Manager");
-        Manager.GetComponent<AnimationManager>().CaptureAnimation();    
+        //GameObject Manager = GameObject.Find("Manager");
+        //Manager.GetComponent<GameManager>().CaptureAnimation();    
         this.enabled = false;
     }
 
