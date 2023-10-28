@@ -33,9 +33,12 @@ public class PlayerMovement : MonoBehaviour
     float mass = 3.0f;
     Vector3 push = Vector3.zero;
 
+    Vector3 startPos;
+
     // Start is called before the first frame update
     void Start()
     {
+        startPos = transform.position;
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
     }
@@ -131,7 +134,8 @@ public class PlayerMovement : MonoBehaviour
         //transform.Translate(movementDirection * speed * Time.deltaTime);
 
         Vector3 velocity = movementDirection * magnitude;
-        velocity.y = ySpeed;
+        velocity = AdjustVelocityToSlope(velocity);
+        velocity.y += ySpeed;
         //velocity.y = glidingMultiplier;
 
         characterController.Move(velocity * Time.deltaTime);
@@ -145,14 +149,32 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    {
+        var ray = new Ray(transform.position, Vector3.down);
+
+        if(Physics.Raycast(ray,out RaycastHit hitInfo, 0.2f))
+        {
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
+            var adjustedVelocity = slopeRotation * velocity;
+
+            if(adjustedVelocity.y < 0)
+            {
+                return adjustedVelocity;
+            }
+        }
+
+        return velocity;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "FallDetector")
         {
-            Debug.Log("wow");
-            characterController.enabled = false;
-            characterController.transform.position = GameManager.Instance.respawnPoint;
-            characterController.enabled = true;
+            //Debug.Log("wow");
+            //characterController.enabled = false;
+            //characterController.transform.position = GameManager.Instance.respawnPoint;
+            //characterController.enabled = true;
         }
         
 

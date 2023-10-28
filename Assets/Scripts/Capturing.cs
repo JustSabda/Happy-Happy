@@ -32,6 +32,8 @@ public class Capturing : MonoBehaviour
     public bool Throw = false;
 
     public GameObject newClone;
+
+    private CharacterController characterController;
      
     private void OnEnable()
     {
@@ -45,9 +47,10 @@ public class Capturing : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.Cam.Follow = gameObject.transform;
+        //GameManager.Instance.Cam.Follow = gameObject.transform;
         Cappy = GameObject.FindWithTag("Cap");
         Controller = Cappy.GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
     }
 
     private void Update()
@@ -60,30 +63,9 @@ public class Capturing : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Instantiate(newClone, Cappy.transform.position + new Vector3(1,0,0), transform.rotation);
+            Instantiate(newClone, Cappy.transform.position + new Vector3(1, 0, 0), transform.rotation);
 
-            if (!isNPC)
-            {
-                
-                gameObject.SetActive(false);
-                transform.DOKill();
-
-            }
-            else
-            {
-
-                Cappy.SetActive(false);
-                GetComponent<PlayerMovement>().enabled = false;
-                GetComponent<CollisionEnemy>().enabled = true;
-                GetComponent<CollisionEnemy>().Captured = false;
-                
-                Return = true;
-                this.enabled = false;
-                gameObject.tag = "Untagged";
-                transform.DOKill();
-
-            }
-           
+            OutBody();
         }
         // Return Animation of Cappy
         if (Return)
@@ -119,6 +101,43 @@ public class Capturing : MonoBehaviour
 
 
 
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FallDetector")
+        {
+            Instantiate(newClone, GameManager.Instance.respawnPoint, transform.rotation);
+
+            OutBody();
+
+            NPCManager.Instance.backToSpot();
+        }
+    }
+    public void OutBody()
+    {
+        
+
+        if (!isNPC)
+        {
+
+            gameObject.SetActive(false);
+            transform.DOKill();
+
+        }
+        else
+        {
+
+            Cappy.SetActive(false);
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<CollisionEnemy>().enabled = true;
+            GetComponent<CollisionEnemy>().Captured = false;
+
+            Return = true;
+            this.enabled = false;
+            gameObject.tag = "Untagged";
+            transform.DOKill();
+
+        }
     }
     public void CapThrow()
     {
@@ -172,7 +191,20 @@ public class Capturing : MonoBehaviour
        
         GetComponent<PlayerMovement>().enabled = false;
         this.enabled = false;
-        gameObject.SetActive(false);
+
+        if (!isNPC)
+        {
+            gameObject.SetActive(false);
+
+        }
+        else
+        {
+            GetComponent<CollisionEnemy>().enabled = true;
+            GetComponent<CollisionEnemy>().Captured = false;
+            gameObject.tag = "Untagged";
+        }
+        
+
         transform.DOKill();
     }
 

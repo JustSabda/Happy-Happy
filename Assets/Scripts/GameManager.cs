@@ -74,7 +74,11 @@ public class GameManager : MonoBehaviour
         //EyeRenderer = EnemyEyes.GetComponent<Renderer>();
 
     }
-    
+    private void Update()
+    {
+        ChangeCamera();
+    }
+
     public void ChangeCamera()
     {
         GameObject Player = GameObject.FindWithTag("Player");
