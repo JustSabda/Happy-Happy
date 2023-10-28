@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -139,7 +139,175 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Happy_Family_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 71
+        width: 223
+        height: 267
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf7e5ad120c20074bb6280487746656a
+      internalID: 1981036446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_1
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 73
+        width: 345
+        height: 438
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8760385cfb88edd4395942c1187e04f0
+      internalID: -363156535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_2
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 61
+        width: 365
+        height: 232
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d6686a9fa057004e9b3ce9fd61aef2b
+      internalID: -1294697700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_3
+      rect:
+        serializedVersion: 2
+        x: 938
+        y: 50
+        width: 340
+        height: 379
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4fa3c02e4a7597e45bd19aef68610f6e
+      internalID: -496471817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_4
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 168
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c0e0b6215dd2c84389b80424c520298
+      internalID: -1169084670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_5
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 0
+        width: 168
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab3fd89bdbaa0e944a36090ef1dc1d1c
+      internalID: -1212740892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_6
+      rect:
+        serializedVersion: 2
+        x: 657
+        y: 0
+        width: 168
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05f7807b09a6e7447ac61f32f0709318
+      internalID: 2086382708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Happy_Family_7
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 0
+        width: 169
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de71b6ae967f5f34f9fdf8037b661b2e
+      internalID: -575247164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -150,7 +318,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Happy_Family_1: -363156535
+      Happy_Family_4: -1169084670
+      Happy_Family_6: 2086382708
+      Happy_Family_7: -575247164
+      Happy_Family_2: -1294697700
+      Happy_Family_3: -496471817
+      Happy_Family_0: 1981036446
+      Happy_Family_5: -1212740892
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

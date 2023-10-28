@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private GameObject healthImage;
+    [SerializeField]
+    private GameObject healthLossImage;
 
     [SerializeField]
     private GameObject panelWin;
@@ -130,23 +132,40 @@ public class UIManager : MonoBehaviour
                     healthImage.transform.GetChild(1).gameObject.SetActive(false);
                     healthImage.transform.GetChild(2).gameObject.SetActive(false);
 
+                    healthLossImage.transform.GetChild(0).gameObject.SetActive(true);
+                    healthLossImage.transform.GetChild(1).gameObject.SetActive(true);
+                    healthLossImage.transform.GetChild(2).gameObject.SetActive(true);
+
                     //Lose
                     panelLose.SetActive(true);
+                    GameManager.Instance.isLose = true;
                     break;
                 case 1:
                     healthImage.transform.GetChild(0).gameObject.SetActive(true);
                     healthImage.transform.GetChild(1).gameObject.SetActive(false);
                     healthImage.transform.GetChild(2).gameObject.SetActive(false);
+
+                    healthLossImage.transform.GetChild(0).gameObject.SetActive(false);
+                    healthLossImage.transform.GetChild(1).gameObject.SetActive(true);
+                    healthLossImage.transform.GetChild(2).gameObject.SetActive(true);
                     break;
                 case 2:
                     healthImage.transform.GetChild(0).gameObject.SetActive(true);
                     healthImage.transform.GetChild(1).gameObject.SetActive(true);
                     healthImage.transform.GetChild(2).gameObject.SetActive(false);
+
+                    healthLossImage.transform.GetChild(0).gameObject.SetActive(false);
+                    healthLossImage.transform.GetChild(1).gameObject.SetActive(false);
+                    healthLossImage.transform.GetChild(2).gameObject.SetActive(true);
                     break;
                 case 3:
                     healthImage.transform.GetChild(0).gameObject.SetActive(true);
                     healthImage.transform.GetChild(1).gameObject.SetActive(true);
                     healthImage.transform.GetChild(2).gameObject.SetActive(true);
+
+                    healthLossImage.transform.GetChild(0).gameObject.SetActive(false);
+                    healthLossImage.transform.GetChild(1).gameObject.SetActive(false);
+                    healthLossImage.transform.GetChild(2).gameObject.SetActive(false);
                     break;
             }
         }
@@ -173,11 +192,6 @@ public class UIManager : MonoBehaviour
     }
 
 
-    public void RestartToChekcpoint()
-    {
-        panelLose.SetActive(false);
-        GameManager.Instance.RestartToCheckpoint();
-    }
 
     public void Pause()
     {

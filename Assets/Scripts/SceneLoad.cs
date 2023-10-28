@@ -7,7 +7,7 @@ public class SceneLoad : MonoBehaviour
 {
     public GameObject menuPanel;
     //public GameObject selectLevelPanel;
-    //public GameObject settingPanel;
+    public GameObject tutorialPanel;
     public GameObject creditPanel;
 
     //public GameObject pausePanel;
@@ -25,6 +25,7 @@ public class SceneLoad : MonoBehaviour
     //public GameObject SFXBtnOn;
     //public GameObject SFXBtnOff;
 
+    
 
     private void Awake()
     {
@@ -136,6 +137,23 @@ public class SceneLoad : MonoBehaviour
     //    }
     //}
 
+    public void TutorialPanel()
+    {
+        if (menuPanel == null || creditPanel == null|| tutorialPanel == null)
+        {
+            return;
+        }
+        else
+        {
+            menuPanel.SetActive(false);
+            tutorialPanel.SetActive(true);
+            creditPanel.SetActive(false);
+            tutorialPanel.transform.GetChild(0).gameObject.SetActive(true);
+            tutorialPanel.transform.GetChild(1).gameObject.SetActive(false);
+            tutorialPanel.transform.GetChild(2).gameObject.SetActive(false);
+        }
+    }
+
     public void CreditPanel()
     {
         if (menuPanel == null || creditPanel == null)
@@ -145,6 +163,7 @@ public class SceneLoad : MonoBehaviour
         else
         {
             menuPanel.SetActive(false);
+            tutorialPanel.SetActive(false);
             creditPanel.SetActive(true); 
         }
     }
@@ -158,6 +177,7 @@ public class SceneLoad : MonoBehaviour
         else
         {
             menuPanel.SetActive(true);
+            tutorialPanel.SetActive(false);
             creditPanel.SetActive(false);
         }
     }

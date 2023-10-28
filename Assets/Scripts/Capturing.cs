@@ -104,7 +104,7 @@ public class Capturing : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "FallDetector")
+        if (other.tag == "FallDetector" && GameManager.Instance.isLose == false)
         {
             Instantiate(newClone, GameManager.Instance.respawnPoint, transform.rotation);
 
@@ -141,6 +141,10 @@ public class Capturing : MonoBehaviour
     }
     public void CapThrow()
     {
+        var player = gameObject.GetComponent<PlayerMovement>();
+
+        player.anim1.SetTrigger("ThrowCap");
+        player.anim2.SetTrigger("ThrowCap");
         Throw = true;
         //TrailEffectWhite();
         //TrailEffectYellow();

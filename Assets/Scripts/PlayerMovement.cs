@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpButtonGracePeriod;
 
-    private Animator anim1;
-    private Animator anim2;
+    [HideInInspector]public Animator anim1;
+    [HideInInspector]public Animator anim2;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
@@ -61,23 +61,11 @@ public class PlayerMovement : MonoBehaviour
 
         if((horizontalInput != 0 || verticalInput != 0 ))
         {
-            if (isGrounded)
-            {
-                anim1.SetBool("Walk", true);
-                anim2.SetBool("Walk", true);
-            }
-            if (isSwiming)
-            {
-                anim1.SetBool("Float", true);
-                anim2.SetBool("Float", true);
-            }
+
         }
         else
         {
-            anim1.SetBool("Walk", false);
-            anim2.SetBool("Walk", false);
-            anim1.SetBool("Float", false);
-            anim2.SetBool("Float", false);
+
         }
 
 
@@ -127,6 +115,11 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             isJumping = false;
             isGliding = false;
+            anim1.SetBool("Fly", false);
+            anim2.SetBool("Fly", false);
+            anim1.SetBool("Jump", false);
+            anim2.SetBool("Jump", false);
+
             if (Time.time - jumpButtonPressedTime <= jumpButtonGracePeriod)
             {
                 //ySpeed = jumpHeight;
@@ -149,28 +142,43 @@ public class PlayerMovement : MonoBehaviour
                 isGliding =! isGliding;
                 if (isGliding)
                 {
-                    anim1.SetBool("Gliding", true);
-                    anim2.SetBool("Gliding", true);
+                    anim1.SetBool("Fly", true);
+                    anim2.SetBool("Fly", true);
+                }
+                else
+                {
+                    anim1.SetBool("Fly", false);
+                    anim2.SetBool("Fly", false);
                 }
             }
 
 
         }
 
-        if (isSwiming)
+        if (isSwiming )
         {
-            if (Input.GetButtonDown("Jump"))
+            if (fruitType == Fruit.Coconut)
             {
-                //ySpeed = Mathf.Sqrt(swimHeight * 3);
+                anim1.SetBool("Float", true);
+                anim2.SetBool("Float", true);
 
-                Vector3 dir = new Vector3(0,1,0);
-                dir.Normalize();
+                if (Input.GetButtonDown("Jump"))
+                {
+                    //ySpeed = Mathf.Sqrt(swimHeight * 3);
 
-                push += dir.normalized * swimHeight / mass;
+                    Vector3 dir = new Vector3(0, 1, 0);
+                    dir.Normalize();
+
+                    push += dir.normalized * swimHeight / mass;
+                }
+                else
+                    ySpeed = gravity * sinkMultiplier;
             }
-            else
-            ySpeed = gravity * sinkMultiplier;
-
+        }
+        else
+        {
+            anim1.SetBool("Float", false);
+            anim2.SetBool("Float", false);
         }
 
         if (isGliding)
@@ -187,8 +195,15 @@ public class PlayerMovement : MonoBehaviour
 
         if(movementDirection != Vector3.zero)
         {
+            anim1.SetBool("Walk", true);
+            anim2.SetBool("Walk", true);
             Quaternion toRotate = Quaternion.LookRotation(movementDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotate, rotationSpeed * Time.deltaTime);
+        }
+        else
+        {
+            anim1.SetBool("Walk", false);
+            anim2.SetBool("Walk", false);
         }
 
     }
@@ -215,6 +230,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.tag == "FallDetector")
         {
+            if(GameManager.Instance.isLose == false)
+            UIManager.Instance.healthPoint--;
+
             //Debug.Log("wow");
             //characterController.enabled = false;
             //characterController.transform.position = GameManager.Instance.respawnPoint;

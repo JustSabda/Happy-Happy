@@ -8,6 +8,7 @@ using UnityEngine.Timeline;
 using UnityEngine.UIElements;
 using UnityEngine.VFX;
 using static Unity.Burst.Intrinsics.X86;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,7 +61,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]public bool isWin = false;
     [HideInInspector] public bool isLose = false;
-    [HideInInspector] public bool isGameOver = false;
 
 
 
@@ -80,8 +80,18 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        respawnPoint = Player.transform.position;
+        if (SceneManager.GetActiveScene().name != ("MainMenu"))
+            respawnPoint = Player.transform.position;
 
+        if (AudioManager.Instance.x == true)
+        {
+            if (SceneManager.GetActiveScene().name == ("Level 1"))
+            {
+                AudioManager.Instance.PlayMusic("MusicGame");
+            }
+
+            AudioManager.Instance.x = false;
+        }
 
         //EnemyCappySpace = EnemyCapturing.CappySpace.position;
         //EyeRenderer = EnemyEyes.GetComponent<Renderer>();
@@ -89,20 +99,22 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        ChangeCamera();
-
-        if (!UIManager.Instance.isPaused)
+        if (SceneManager.GetActiveScene().name != ("MainMenu"))
         {
-            if (isGameOver || isLose)
+            ChangeCamera();
+
+            if (!UIManager.Instance.isPaused)
             {
-                Time.timeScale = 0;
-            }
-            else
-            {
-                Time.timeScale = 1;
+                if (isWin || isLose)
+                {
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Time.timeScale = 1;
+                }
             }
         }
-
 
     }
 
@@ -112,11 +124,6 @@ public class GameManager : MonoBehaviour
         Cam.Follow = Player.transform;
     }
 
-    public void RestartToCheckpoint()
-    {
-        isLose = false;
-
-    }
 
 
     //public void CaptureAnimation()
