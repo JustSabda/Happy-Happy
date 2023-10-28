@@ -77,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             lastGroundTime = Time.time;
         }
 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButton("Jump"))
         {
             jumpButtonPressedTime = Time.time;
         }
@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         if (Time.time - lastGroundTime <= jumpButtonGracePeriod)
         {
             characterController.stepOffset = originalStepOffset;
-            ySpeed = -0.5f;
+            //ySpeed = -0.5f;
             isGrounded = true;
             isJumping = false;
             isGliding = false;
