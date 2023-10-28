@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public enum Fruit {Box,Strowberry,Carrot,Coconut }
+
+    public Fruit fruitType = Fruit.Box;
+
     public float speed;
     public float runSpeed;
     public float rotationSpeed;
@@ -16,7 +20,8 @@ public class PlayerMovement : MonoBehaviour
 
     public float jumpButtonGracePeriod;
 
-    private Animator anim;
+    private Animator anim1;
+    private Animator anim2;
     private CharacterController characterController;
     private float ySpeed;
     private float originalStepOffset;
@@ -33,7 +38,10 @@ public class PlayerMovement : MonoBehaviour
     float mass = 3.0f;
     Vector3 push = Vector3.zero;
 
+
     Vector3 startPos;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
         startPos = transform.position;
         characterController = GetComponent<CharacterController>();
         originalStepOffset = characterController.stepOffset;
+        anim1 = transform.GetChild(0).GetComponent<Animator>();
+        anim2 = transform.GetChild(1).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -49,6 +59,26 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
+        if((horizontalInput != 0 || verticalInput != 0 ))
+        {
+            if (isGrounded)
+            {
+                anim1.SetBool("Walk", true);
+                anim2.SetBool("Walk", true);
+            }
+            if (isSwiming)
+            {
+                anim1.SetBool("Float", true);
+                anim2.SetBool("Float", true);
+            }
+        }
+        else
+        {
+            anim1.SetBool("Walk", false);
+            anim2.SetBool("Walk", false);
+            anim1.SetBool("Float", false);
+            anim2.SetBool("Float", false);
+        }
 
 
         if(push.magnitude > 0.2f)
@@ -64,6 +94,11 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift))
         {
             magnitude *= runSpeed;
+            if (isGrounded)
+            {
+                anim1.SetBool("Run", true);
+                anim2.SetBool("Run", true);
+            }
         }
 
         movementDirection.Normalize();
@@ -97,6 +132,10 @@ public class PlayerMovement : MonoBehaviour
                 //ySpeed = jumpHeight;
                 ySpeed = Mathf.Sqrt(jumpHeight * -3 * gravity);
                 isJumping = true;
+
+                anim1.SetBool("Jump", true);
+                anim2.SetBool("Jump", true);
+
                 jumpButtonPressedTime = null;
                 lastGroundTime = null;
             }
@@ -105,9 +144,14 @@ public class PlayerMovement : MonoBehaviour
         {
             characterController.stepOffset = 0;
             isGrounded = false;
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.Q) && fruitType == Fruit.Carrot)
             {
                 isGliding =! isGliding;
+                if (isGliding)
+                {
+                    anim1.SetBool("Gliding", true);
+                    anim2.SetBool("Gliding", true);
+                }
             }
 
 
