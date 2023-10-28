@@ -78,7 +78,7 @@ public class Capturing : MonoBehaviour
             {
                 SetParent();
                 //Reset Cappys Rotation
-                Cappy.transform.rotation = this.transform.rotation * Quaternion.Euler(15,0,5);
+                Cappy.transform.rotation = this.transform.rotation * Quaternion.Euler(0,0,0);
             }
         }
         //Spin Rotation
@@ -128,6 +128,9 @@ public class Capturing : MonoBehaviour
         {
 
             Cappy.SetActive(false);
+            var player = gameObject.GetComponent<PlayerMovement>();
+            player.anim1.SetBool("Walk",false);
+            player.anim2.SetBool("Walk", false);
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<CollisionEnemy>().enabled = true;
             GetComponent<CollisionEnemy>().Captured = false;

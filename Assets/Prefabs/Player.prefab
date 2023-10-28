@@ -160,6 +160,8 @@ MonoBehaviour:
   swimHeight: 100
   gravityMultiplier: 4
   jumpButtonGracePeriod: 0.2
+  anim1: {fileID: 0}
+  anim2: {fileID: 0}
   isSwiming: 0
   glidingMultiplier: 0.1
   sinkMultiplier: 0.3
@@ -302,7 +304,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.27, z: 1}
+  m_Size: {x: 1, y: 4.64, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &1506384555667657810
 CharacterController:

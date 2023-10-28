@@ -25,8 +25,6 @@ public class SceneLoad : MonoBehaviour
     //public GameObject SFXBtnOn;
     //public GameObject SFXBtnOff;
 
-    
-
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -42,7 +40,8 @@ public class SceneLoad : MonoBehaviour
 
     private void Start()
     {
-        
+        Time.timeScale = 1f;
+
         //if (AudioManager.Instance.x == true)
         //{
         //    if (SceneManager.GetActiveScene().name == ("MainMenu"))
@@ -53,7 +52,7 @@ public class SceneLoad : MonoBehaviour
 
         //    AudioManager.Instance.x = false;
         //}
-        
+
     }
 
     private void Update()

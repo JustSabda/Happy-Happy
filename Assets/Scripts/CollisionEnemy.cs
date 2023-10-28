@@ -17,7 +17,19 @@ public class CollisionEnemy : MonoBehaviour
     public bool Captured;
 
     Capturing capturing;
-   
+
+    public GameObject indicatorPoses;
+
+    private void OnEnable()
+    {
+        indicatorPoses.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        indicatorPoses.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

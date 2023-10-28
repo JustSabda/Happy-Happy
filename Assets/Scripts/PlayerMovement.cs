@@ -88,6 +88,11 @@ public class PlayerMovement : MonoBehaviour
                 anim2.SetBool("Run", true);
             }
         }
+        else
+        {
+            anim1.SetBool("Run", false);
+            anim2.SetBool("Run", false);
+        }
 
         movementDirection.Normalize();
 
@@ -115,8 +120,11 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             isJumping = false;
             isGliding = false;
-            anim1.SetBool("Fly", false);
-            anim2.SetBool("Fly", false);
+            if (fruitType == Fruit.Carrot)
+            {
+                anim1.SetBool("Fly", false);
+                anim2.SetBool("Fly", false);
+            }
             anim1.SetBool("Jump", false);
             anim2.SetBool("Jump", false);
 
@@ -177,8 +185,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            anim1.SetBool("Float", false);
-            anim2.SetBool("Float", false);
+            if (fruitType == Fruit.Coconut)
+            {
+                anim1.SetBool("Float", false);
+                anim2.SetBool("Float", false);
+            }
         }
 
         if (isGliding)
