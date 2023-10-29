@@ -36,6 +36,8 @@ public class UIManager : MonoBehaviour
     public GameObject SFXBtnOn;
     public GameObject SFXBtnOff;
 
+    bool soundPlayWin = true;
+    bool soundPlayLose = true;
 
     private void Awake()
     {
@@ -109,14 +111,18 @@ public class UIManager : MonoBehaviour
 
         HealthPoint();
 
-        if (GameManager.Instance.isWin == true && panelWin != null)
+        if (GameManager.Instance.isWin == true && panelWin != null && soundPlayWin == true)
         {
             panelWin.SetActive(true);
+            AudioManager.Instance.PlaySFX("SFX_Win");
+            soundPlayWin = false;
         }
 
-        if (GameManager.Instance.isLose == true && panelLose != null)
+        if (GameManager.Instance.isLose == true && panelLose != null && soundPlayLose == true)
         {
             panelLose.SetActive(true);
+            AudioManager.Instance.PlaySFX("SFX_Lose");
+            soundPlayLose = false;
         }
 
     }

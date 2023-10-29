@@ -85,11 +85,14 @@ public class GameManager : MonoBehaviour
 
         if (AudioManager.Instance.x == true)
         {
+            if (SceneManager.GetActiveScene().name == ("MainMenu"))
+            {
+                AudioManager.Instance.PlayMusic("MenuMusicGame");
+            }
             if (SceneManager.GetActiveScene().name == ("Level 1"))
             {
                 AudioManager.Instance.PlayMusic("MusicGame");
             }
-
             AudioManager.Instance.x = false;
         }
 

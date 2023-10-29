@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -178,7 +178,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 80
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -303,9 +303,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSounds:
+  - name: MenuMusicGame
+    clip: {fileID: 8300000, guid: 0b371171a3d213a40bf5996fcd643e53, type: 3}
   - name: MusicGame
     clip: {fileID: 8300000, guid: 70fa3550be945c744bbf9115b3de188b, type: 3}
-  sfxSounds: []
+  sfxSounds:
+  - name: SFX_Win
+    clip: {fileID: 8300000, guid: 88d812d9bcc1a8e4aa0b6d0459d9c031, type: 3}
+  - name: SFX_Lose
+    clip: {fileID: 8300000, guid: 0cbca6f12ba9c764da216b8f520c1159, type: 3}
   musicSource: {fileID: 754462158028085352}
   sfxSource: {fileID: 754462158206945169}
   x: 1

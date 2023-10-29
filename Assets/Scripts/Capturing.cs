@@ -48,7 +48,7 @@ public class Capturing : MonoBehaviour
     private void Start()
     {
         //GameManager.Instance.Cam.Follow = gameObject.transform;
-        Cappy = GameObject.FindWithTag("Cap");
+        Cappy = GameObject.Find("Cap");
         Controller = Cappy.GetComponent<CharacterController>();
         characterController = GetComponent<CharacterController>();
     }
@@ -152,7 +152,7 @@ public class Capturing : MonoBehaviour
         //TrailEffectWhite();
         //TrailEffectYellow();
         Cappy.transform.SetParent(null);
-
+        Cappy.tag = "Cap";
         Vector3 Forward = transform.forward;
         Cappy.transform.DOBlendableMoveBy(Forward * ThrowDistance, ThrowTime).OnComplete(ReturnCappy); 
 
@@ -161,6 +161,7 @@ public class Capturing : MonoBehaviour
     {
 
         Return = true;
+        Cappy.tag = "Untagged";
     }
     public void SetParent()
     {
