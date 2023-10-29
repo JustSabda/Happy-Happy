@@ -129,8 +129,25 @@ public class Capturing : MonoBehaviour
 
             Cappy.SetActive(false);
             var player = gameObject.GetComponent<PlayerMovement>();
-            player.anim1.SetBool("Walk",false);
+
+
+            player.anim1.SetBool("Walk", false);
             player.anim2.SetBool("Walk", false);
+            player.anim1.SetBool("Run", false);
+            player.anim2.SetBool("Run", false);
+
+            if (player.fruitType == Fruit.Carrot)
+            {
+                player.anim1.SetBool("Fly", false);
+                player.anim2.SetBool("Fly", false);
+            }
+
+            if(player.fruitType == Fruit.Coconut)
+            {
+                player.anim1.SetBool("Float", false);
+                player.anim2.SetBool("Float", false);
+            }
+
             GetComponent<PlayerMovement>().enabled = false;
             GetComponent<CollisionEnemy>().enabled = true;
             GetComponent<CollisionEnemy>().Captured = false;

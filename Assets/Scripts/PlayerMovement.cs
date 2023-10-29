@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(CharacterController))]
 
+public enum Fruit { Box, Strowberry, Carrot, Coconut }
+
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    public enum Fruit {Box,Strowberry,Carrot,Coconut }
+    
 
     public Fruit fruitType = Fruit.Box;
 
