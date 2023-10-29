@@ -375,20 +375,26 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 2
+        m_Name: Lifetime
+        m_Overridden: 1
     m_Vector2f:
       m_Array:
       - m_Value: {x: 1, y: 3}
         m_Name: New Vector2
         m_Overridden: 1
+      - m_Value: {x: 2, y: 3}
+        m_Name: Min & Max Size
+        m_Overridden: 1
     m_Vector3f:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 8.675366, y: 0.114579864, z: 0.114579864, w: 1}
+      - m_Value: {x: 8.632088, y: 8.632088, z: 8.632088, w: 1}
         m_Name: Color1
         m_Overridden: 1
-      - m_Value: {x: 4.3376827, y: 0, z: 1.7305645, w: 1}
+      - m_Value: {x: 0.49170128, y: 0.49170128, z: 0.49170128, w: 1}
         m_Name: Color2
         m_Overridden: 1
     m_Uint:

@@ -348,7 +348,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8110123684077772087}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.9, z: 0}
+  m_LocalPosition: {x: 0, y: -0.9, z: 0.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,10 +384,10 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.41509432, y: 0.13090135, z: 0, w: 1}
+      - m_Value: {x: 2.9176471, y: 1.3442563, z: 0.12220512, w: 1}
         m_Name: Color1
         m_Overridden: 1
-      - m_Value: {x: 0, y: 0.36682895, z: 0.7169812, w: 1}
+      - m_Value: {x: 4.3294115, y: 0.36267322, z: 0.15866953, w: 1}
         m_Name: Color2
         m_Overridden: 1
     m_Uint:

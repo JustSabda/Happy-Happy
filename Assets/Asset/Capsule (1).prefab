@@ -152,17 +152,17 @@ VisualEffect:
         m_Overridden: 1
     m_Vector2f:
       m_Array:
-      - m_Value: {x: 1, y: 3}
+      - m_Value: {x: 2, y: 3}
         m_Name: Min & Max Size
         m_Overridden: 1
     m_Vector3f:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 13.491826, y: 13.655694, z: 0.05462278, w: 1}
+      - m_Value: {x: 24.340382, y: 0, z: 0, w: 1}
         m_Name: Color1
         m_Overridden: 1
-      - m_Value: {x: 12.125731, y: 6.6572647, z: 0, w: 1}
+      - m_Value: {x: 0.32156864, y: 0.32156864, z: 0.32156864, w: 1}
         m_Name: Color2
         m_Overridden: 1
     m_Uint:
